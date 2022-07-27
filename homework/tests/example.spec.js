@@ -2,7 +2,6 @@
 const { test, expect } = require('@playwright/test');
 
 const data = [
-  'Prototype',
   '1',
   '2',
   '3',
@@ -10,8 +9,7 @@ const data = [
   '5',
   '6',
   '7',
-  '8',
-  '9'
+  '8'
 ]
 
 data.forEach(version => {
@@ -90,6 +88,182 @@ data.forEach(version => {
 });
 
 data.forEach(version => {
+  test.describe(version + ': Elements functionality', () => {
+    test('Clear button should clean answer field when Add operation is selected', async ({ page }) => {
+      await page.goto('https://testsheepnz.github.io/BasicCalculator');
+      await page.selectOption('#selectBuild', { label: version});
+      await page.locator('#number1Field').type('10');
+      await page.locator('#number2Field').type('12');
+      await page.selectOption('#selectOperationDropdown', {label: 'Add'});
+      await page.locator('#calculateButton').click();
+      await page.locator('#clearButton').click();
+      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field when Add operation is selected').toHaveValue('');
+    });
+  });
+});
+
+data.forEach(version => {
+  test.describe(version + ': Elements functionality', () => {
+    test('Clear button should clean answer field when Subtract operation is selected', async ({ page }) => {
+      await page.goto('https://testsheepnz.github.io/BasicCalculator');
+      await page.selectOption('#selectBuild', { label: version});
+      await page.locator('#number1Field').type('10');
+      await page.locator('#number2Field').type('12');
+      await page.selectOption('#selectOperationDropdown', {label: 'Subtract'});
+      await page.locator('#calculateButton').click();
+      await page.locator('#clearButton').click();
+      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field when Subtract operation is selected').toHaveValue('');
+    });
+  });
+});
+
+data.forEach(version => {
+  test.describe(version + ': Elements functionality', () => {
+    test('Clear button should clean answer field when Multiply operation is selected', async ({ page }) => {
+      await page.goto('https://testsheepnz.github.io/BasicCalculator');
+      await page.selectOption('#selectBuild', { label: version});
+      await page.locator('#number1Field').type('10');
+      await page.locator('#number2Field').type('12');
+      await page.selectOption('#selectOperationDropdown', {label: 'Multiply'});
+      await page.locator('#calculateButton').click();
+      await page.locator('#clearButton').click();
+      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field when Multiply operation is selected').toHaveValue('');
+    });
+  });
+});
+
+data.forEach(version => {
+  test.describe(version + ': Elements functionality', () => {
+    test('Clear button should clean answer field when Divide operation is selected', async ({ page }) => {
+      await page.goto('https://testsheepnz.github.io/BasicCalculator');
+      await page.selectOption('#selectBuild', { label: version});
+      await page.locator('#number1Field').type('10');
+      await page.locator('#number2Field').type('12');
+      await page.selectOption('#selectOperationDropdown', {label: 'Divide'});
+      await page.locator('#calculateButton').click();
+      await page.locator('#clearButton').click();
+      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field when Divide operation is selected').toHaveValue('');
+    });
+  });
+});
+
+data.forEach(version => {
+  test.describe(version + ': Elements functionality', () => {
+    test('Clear button should clean answer field when Concatenate operation is selected', async ({ page }) => {
+      await page.goto('https://testsheepnz.github.io/BasicCalculator');
+      await page.selectOption('#selectBuild', { label: version});
+      await page.locator('#number1Field').type('10');
+      await page.locator('#number2Field').type('12');
+      await page.selectOption('#selectOperationDropdown', {label: 'Concatenate'});
+      await page.locator('#calculateButton').click();
+      await page.locator('#clearButton').click();
+      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field when Concatenate operation is selected').toHaveValue('');
+    });
+  });
+});
+
+data.forEach(version => {
+  test.describe(version + ': Elements functionality', () => {
+    test('"Integers only" checkbox should convert answer value to an integer number when Add operation is selected', async ({ page }) => {
+      await page.goto('https://testsheepnz.github.io/BasicCalculator');
+      await page.selectOption('#selectBuild', { label: version});
+      await page.locator('#number1Field').type('15.15');
+      await page.locator('#number2Field').type('5.5');
+      await page.selectOption('#selectOperationDropdown', {label: 'Add'});
+      await page.locator('#calculateButton').click();
+      await page.locator('#integerSelect').click();
+      await expect(page.locator('#numberAnswerField'), '"Integers only" checkbox does not convert answer value to an integer number when Add operation is selected').toHaveValue('20');
+    });
+  });
+});
+
+data.forEach(version => {
+  test.describe(version + ': Elements functionality', () => {
+    test('"Integers only" checkbox should convert answer value to an integer number when Subtract operation is selected', async ({ page }) => {
+      await page.goto('https://testsheepnz.github.io/BasicCalculator');
+      await page.selectOption('#selectBuild', { label: version});
+      await page.locator('#number1Field').type('15.15');
+      await page.locator('#number2Field').type('5.5');
+      await page.selectOption('#selectOperationDropdown', {label: 'Subtract'});
+      await page.locator('#calculateButton').click();
+      await page.locator('#integerSelect').click();
+      await expect(page.locator('#numberAnswerField'), '"Integers only" checkbox does not convert answer value to an integer number when Subtract operation is selected').toHaveValue('9');
+    });
+  });
+});
+
+data.forEach(version => {
+  test.describe(version + ': Elements functionality', () => {
+    test('"Integers only" checkbox should convert answer value to an integer number when Multiply operation is selected', async ({ page }) => {
+      await page.goto('https://testsheepnz.github.io/BasicCalculator');
+      await page.selectOption('#selectBuild', { label: version});
+      await page.locator('#number1Field').type('15.15');
+      await page.locator('#number2Field').type('5.5');
+      await page.selectOption('#selectOperationDropdown', {label: 'Multiply'});
+      await page.locator('#calculateButton').click();
+      await page.locator('#integerSelect').click();
+      await expect(page.locator('#numberAnswerField'), '"Integers only" checkbox does not convert answer value to an integer number when Multiply operation is selected').toHaveValue('83');
+    });
+  });
+});
+
+data.forEach(version => {
+  test.describe(version + ': Elements functionality', () => {
+    test('"Integers only" checkbox should convert answer value to an integer number when Divide operation is selected', async ({ page }) => {
+      await page.goto('https://testsheepnz.github.io/BasicCalculator');
+      await page.selectOption('#selectBuild', { label: version});
+      await page.locator('#number1Field').type('15.15');
+      await page.locator('#number2Field').type('5.5');
+      await page.selectOption('#selectOperationDropdown', {label: 'Divide'});
+      await page.locator('#calculateButton').click();
+      await page.locator('#integerSelect').click();
+      await expect(page.locator('#numberAnswerField'), '"Integers only" checkbox does not convert answer value to an integer number when Divide operation is selected').toHaveValue('2');
+    });
+  });
+});
+
+test.describe('9' + ': Elements accessibility', () => {
+  test('Number 1 field should be visible in 9 build', async ({ page }) => {
+    await page.goto('https://testsheepnz.github.io/BasicCalculator');
+    await page.selectOption('#selectBuild', { label: '9'});
+    await expect(page.locator('#number1Field'), 'Number 1 field is invisible').toBeVisible();
+  });
+});
+
+test.describe('9' + ': Elements accessibility', () => {
+  test('Number 2 field should be visible in 9 build', async ({ page }) => {
+    await page.goto('https://testsheepnz.github.io/BasicCalculator');
+    await page.selectOption('#selectBuild', { label: '9'});
+    await expect(page.locator('#number2Field'), 'Number 2 field is invisible').toBeVisible();
+  });
+});
+
+test.describe('9' + ': Elements accessibility', () => {
+  test('Operation options should be visible in 9 build', async ({ page }) => {
+    await page.goto('https://testsheepnz.github.io/BasicCalculator');
+    await page.selectOption('#selectBuild', { label: '9'});
+    await expect(page.locator('#selectOperationDropdown'), 'Operation options are invisible').toBeVisible();
+  });
+});
+
+test.describe('9' + ': Elements accessibility', () => {
+  test('Calculate button should be visible and enabled in 9 build', async ({ page }) => {
+    await page.goto('https://testsheepnz.github.io/BasicCalculator');
+    await page.selectOption('#selectBuild', { label: '9'});
+    await expect(page.locator('#calculateButton'), 'Calculate button is invisible').toBeVisible();
+    await expect(page.locator('#calculateButton'), 'Calculate button is disabled').toBeEnabled();
+  });
+});
+
+test.describe('9' + ': Elements accessibility', () => {
+  test('Answer field should be visible in 9 build', async ({ page }) => {
+    await page.goto('https://testsheepnz.github.io/BasicCalculator');
+    await page.selectOption('#selectBuild', { label: '9'});
+    await expect(page.locator('#numberAnswerField'), 'Answer field should be visible').toBeVisible();
+  });
+});
+
+data.forEach(version => {
   test.describe(version + ': Input acceptance', () => {
     test('Typing 2.5.5 with "Add" shows "Number 1 is not a number"', async ({ page }) => {
       await page.goto('https://testsheepnz.github.io/BasicCalculator');
@@ -101,7 +275,7 @@ data.forEach(version => {
     });
   });
 });
-
+/*
 data.forEach(version => {
   test.describe(version + ': Input acceptance', () => {
     test('Typing AAA with "Add" shows "Number 1 is not a number"', async ({ page }) => {
@@ -127,7 +301,7 @@ data.forEach(version => {
     });
   });
 });
-
+*/
 data.forEach(version => {
   test.describe(version + ': Input acceptance', () => {
     test('Typing AAA with "Add" shows "Number 2 is not a number"', async ({ page }) => {
@@ -153,7 +327,7 @@ data.forEach(version => {
     });
   });
 });
-
+/*
 data.forEach(version => {
   test.describe(version + ': Input acceptance', () => {
     test('Typing AAA with "Subtract" shows "Number 1 is not a number"', async ({ page }) => {
@@ -179,7 +353,7 @@ data.forEach(version => {
     });
   });
 });
-
+*/
 data.forEach(version => {
   test.describe(version + ': Input acceptance', () => {
     test('Typing AAA with "Subtract" shows "Number 2 is not a number"', async ({ page }) => {
@@ -205,7 +379,7 @@ data.forEach(version => {
     });
   });
 });
-
+/*
 data.forEach(version => {
   test.describe(version + ': Input acceptance', () => {
     test('Typing AAA with "Multiply" shows "Number 1 is not a number"', async ({ page }) => {
@@ -231,7 +405,7 @@ data.forEach(version => {
     });
   });
 });
-
+*/
 data.forEach(version => {
   test.describe(version + ': Input acceptance', () => {
     test('Typing AAA with "Multiply" shows "Number 2 is not a number"', async ({ page }) => {
@@ -257,7 +431,7 @@ data.forEach(version => {
     });
   });
 });
-
+/*
 data.forEach(version => {
   test.describe(version + ': Input acceptance', () => {
     test('Typing AAA with "Divide" shows "Number 1 is not a number"', async ({ page }) => {
@@ -283,7 +457,7 @@ data.forEach(version => {
     });
   });
 });
-
+*/
 data.forEach(version => {
   test.describe(version + ': Input acceptance', () => {
     test('Typing AAA with "Divide" shows "Number 2 is not a number"', async ({ page }) => {
@@ -307,12 +481,10 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Add'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Adding 10 to 12 is not equal 22').toHaveValue('22');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
-
+/*
 data.forEach(version => {
   test.describe(version + ': Operation Add', () => {
     test('Adding -10 to -12 is equal -22', async ({ page }) => {
@@ -323,8 +495,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Add'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Adding -10 to -12 is not equal -22').toHaveValue('-22');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -339,8 +509,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Add'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Adding 10 to -12 is not equal -2').toHaveValue('-2');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -355,12 +523,10 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Add'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Adding -10 to 12 is not equal 2').toHaveValue('2');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
-
+*/
 data.forEach(version => {
   test.describe(version + ': Operation Add', () => {
     test('Adding 6.1 to 3.2 is equal 9.3', async ({ page }) => {
@@ -371,14 +537,10 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Add'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Adding 6.1 to 3.2 is not equal 9.3').toHaveValue('9.3');
-      await page.locator('#integerSelect').click();
-      await expect(page.locator('#numberAnswerField'), 'Answer is not integer').toHaveValue('9');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
-
+/*
 data.forEach(version => {
   test.describe(version + ': Operation Add', () => {
     test('Adding -6.1 to -3.2 is equal -9.3', async ({ page }) => {
@@ -389,10 +551,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Add'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Adding -6.1 to -3.2 is not equal -9.3').toHaveValue('-9.3');
-      await page.locator('#integerSelect').click();
-      await expect(page.locator('#numberAnswerField'), 'Answer is not integer').toHaveValue('-9');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -407,10 +565,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Add'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Adding 6.1 to -3.2 is not equal 2.9').toHaveValue('2.9');
-      await page.locator('#integerSelect').click();
-      await expect(page.locator('#numberAnswerField'), 'Answer is not integer').toHaveValue('2');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -425,14 +579,10 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Add'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Adding -6.1 to 3.2 is not equal -2.9').toHaveValue('-2.9');
-      await page.locator('#integerSelect').click();
-      await expect(page.locator('#numberAnswerField'), 'Answer is not integer').toHaveValue('-2');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
-
+*/
 data.forEach(version => {
   test.describe(version + ': Operation Add', () => {
     test('Adding -6 to blank is equal -6', async ({ page }) => {
@@ -443,8 +593,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Add'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Adding -6 to blank is not equal -6').toHaveValue('-6');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -459,8 +607,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Add'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Adding blank to 3 is not equal 3').toHaveValue('3');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -475,10 +621,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Add'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Adding -6.1 to blank is not equal -6.1').toHaveValue('-6.1');
-      await page.locator('#integerSelect').click();
-      await expect(page.locator('#numberAnswerField'), 'Answer is not integer').toHaveValue('-6');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -493,8 +635,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Add'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Adding blank to blank is not equal 0').toHaveValue('0');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -509,12 +649,10 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Subtract'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Subtracting 10 from 12 is not equal 2').toHaveValue('2');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
-
+/*
 data.forEach(version => {
   test.describe(version + ': Operation Subtract', () => {
     test('Subtracting 12 from 10 is equal -2', async ({ page }) => {
@@ -525,8 +663,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Subtract'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Subtracting 12 from 10 is not equal -2').toHaveValue('-2');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -541,8 +677,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Subtract'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Subtracting -10 from -12 is not equal -2').toHaveValue('-2');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -557,8 +691,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Subtract'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Subtracting 10 from -12 is not equal -22').toHaveValue('-22');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -573,12 +705,10 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Subtract'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Subtracting -10 from 12 is not equal 22').toHaveValue('22');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
-
+*/
 data.forEach(version => {
   test.describe(version + ': Operation Subtract', () => {
     test('Subtracting 6.1 from 3.2 is equal -2.9', async ({ page }) => {
@@ -589,14 +719,10 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Subtract'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Subtracting 6.1 from 3.2 is not equal -2.9').toHaveValue('-2.9');
-      await page.locator('#integerSelect').click();
-      await expect(page.locator('#numberAnswerField'), 'Answer does not give integer').toHaveValue('-2');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
-
+/*
 data.forEach(version => {
   test.describe(version + ': Operation Subtract', () => {
     test('Subtracting 3.2 from 6.1 is equal 2.9', async ({ page }) => {
@@ -607,10 +733,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Subtract'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Subtracting 3.2 from 6.1 is not equal 2.9').toHaveValue('2.9');
-      await page.locator('#integerSelect').click();
-      await expect(page.locator('#numberAnswerField'), 'Answer does not give integer').toHaveValue('2');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -625,10 +747,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Subtract'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Subtracting -6.1 from -3.2 is not equal -9.3').toHaveValue('2.9');
-      await page.locator('#integerSelect').click();
-      await expect(page.locator('#numberAnswerField'), 'Answer does not give integer').toHaveValue('2');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -643,14 +761,10 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Subtract'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Subtracting -3.2 from -6.1 is not equal -2.9').toHaveValue('-2.9');
-      await page.locator('#integerSelect').click();
-      await expect(page.locator('#numberAnswerField'), 'Answer does not give integer').toHaveValue('-2');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
-
+*/
 data.forEach(version => {
   test.describe(version + ': Operation Subtract', () => {
     test('Subtracting 6.1 from -3.2 gives -9.3', async ({ page }) => {
@@ -661,14 +775,10 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Subtract'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Subtracting 6.1 from -3.2 does not give -9.3').toHaveValue('-9.3');
-      await page.locator('#integerSelect').click();
-      await expect(page.locator('#numberAnswerField'), 'Answer does not give integer').toHaveValue('-9');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
-
+/*
 data.forEach(version => {
   test.describe(version + ': Operation Subtract', () => {
     test('Subtracting -6.1 from 3.2 is equal 9.3', async ({ page }) => {
@@ -679,14 +789,10 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Subtract'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Subtracting -6.1 from 3.2 is not equal 9.3').toHaveValue('9.3');
-      await page.locator('#integerSelect').click();
-      await expect(page.locator('#numberAnswerField'), 'Answer does not give integer').toHaveValue('9');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
-
+*/
 data.forEach(version => {
   test.describe(version + ': Operation Subtract', () => {
     test('Subtracting blank from 15.2 is equal 15.2', async ({ page }) => {
@@ -697,14 +803,10 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Subtract'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Subtracting blank from 15.2 is not equal 15.2').toHaveValue('15.2');
-      await page.locator('#integerSelect').click();
-      await expect(page.locator('#numberAnswerField'), 'Answer does not give integer').toHaveValue('15');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
-
+/*
 data.forEach(version => {
   test.describe(version + ': Operation Subtract', () => {
     test('Subtracting blank from -15.2 is equal -15.2', async ({ page }) => {
@@ -715,14 +817,10 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Subtract'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Subtracting blank from -15.2 is not equal -15.2').toHaveValue('-15.2');
-      await page.locator('#integerSelect').click();
-      await expect(page.locator('#numberAnswerField'), 'Answer does not give integer').toHaveValue('-15');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
-
+*/
 data.forEach(version => {
   test.describe(version + ': Operation Subtract', () => {
     test('Subtracting 15.2 from blank is equal -15.2', async ({ page }) => {
@@ -733,14 +831,10 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Subtract'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Subtracting 15.2 from blank is not equal -15.2').toHaveValue('-15.2');
-      await page.locator('#integerSelect').click();
-      await expect(page.locator('#numberAnswerField'), 'Answer does not give integer').toHaveValue('-15');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
-
+/*
 data.forEach(version => {
   test.describe(version + ': Operation Subtract', () => {
     test('Subtracting -15.2 from blank is equal 15.2', async ({ page }) => {
@@ -751,14 +845,10 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Subtract'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Subtracting -15.2 from blank is not equal 15.2').toHaveValue('15.2');
-      await page.locator('#integerSelect').click();
-      await expect(page.locator('#numberAnswerField'), 'Answer does not give integer').toHaveValue('15');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
-
+*/
 data.forEach(version => {
   test.describe(version + ': Operation Subtract', () => {
     test('Subtracting blank from blank is equal 0', async ({ page }) => {
@@ -783,12 +873,10 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Multiply'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Multiplying 10 with 12 is not equal 120').toHaveValue('120');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
-
+/*
 data.forEach(version => {
   test.describe(version + ': Operation Multiply', () => {
     test('Multiplying -10 with -12 is equal 120', async ({ page }) => {
@@ -799,8 +887,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Multiply'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Multiplying -10 with -12 is not equal -22').toHaveValue('120');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -815,8 +901,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Multiply'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Multiplying 10 with -12 is not equal -120').toHaveValue('-120');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -831,12 +915,10 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Multiply'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Multiplying -10 with 12 is not equal -120').toHaveValue('-120');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
-
+*/
 data.forEach(version => {
   test.describe(version + ': Operation Multiply', () => {
     test('Multiplying 6.1 with 3.2 is equal 19.52', async ({ page }) => {
@@ -847,14 +929,10 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Multiply'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Multiplying 6.1 with 3.2 is not equal 19.52').toHaveValue('19.52');
-      await page.locator('#integerSelect').click();
-      await expect(page.locator('#numberAnswerField'), 'Answer is not integer').toHaveValue('19');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
-
+/*
 data.forEach(version => {
   test.describe(version + ': Operation Multiply', () => {
     test('Multiplying -6.1 with -3.2 is equal 19.52', async ({ page }) => {
@@ -865,10 +943,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Multiply'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Multiplying -6.1 with -3.2 is not equal 19.52').toHaveValue('19.52');
-      await page.locator('#integerSelect').click();
-      await expect(page.locator('#numberAnswerField'), 'Answer is not integer').toHaveValue('19');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -883,10 +957,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Multiply'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Multiplying 6.1 with -3.2 is not equal 19.52').toHaveValue('-19.52');
-      await page.locator('#integerSelect').click();
-      await expect(page.locator('#numberAnswerField'), 'Answer is not integer').toHaveValue('-19');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -901,14 +971,10 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Multiply'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Multiplying -6.1 with 3.2 is not equal -19.52').toHaveValue('-19.52');
-      await page.locator('#integerSelect').click();
-      await expect(page.locator('#numberAnswerField'), 'Answer is not integer').toHaveValue('-19');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
-
+*/
 data.forEach(version => {
   test.describe(version + ': Operation Multiply', () => {
     test('Multiplying -6 with blank is equal 0', async ({ page }) => {
@@ -919,8 +985,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Multiply'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Multiplying -6 with blank is not equal 0').toHaveValue('0');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -935,8 +999,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Multiply'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Multiplying 6 with blank is not equal 0').toHaveValue('0');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -951,8 +1013,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Multiply'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Multiplying blank with 3 is not equal 0').toHaveValue('0');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -967,8 +1027,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Multiply'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Multiplying blank with -3 is not equal 0').toHaveValue('0');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -983,8 +1041,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Multiply'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Multiplying -6.1 with blank is not equal 0').toHaveValue('0');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -999,8 +1055,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Multiply'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Multiplying 6.1 with blank is not equal 0').toHaveValue('0');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -1015,8 +1069,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Multiply'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Multiply blank with blank is not equal 0').toHaveValue('0');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -1031,12 +1083,10 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Divide'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Dividing 16 by 2 is not equal 8').toHaveValue('8');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
-
+/*
 data.forEach(version => {
   test.describe(version + ': Operation Divide', () => {
     test('Dividing -16 by 2 is equal -8', async ({ page }) => {
@@ -1047,8 +1097,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Divide'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Dividing -16 by 2 is not equal -8').toHaveValue('-8');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -1063,8 +1111,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Divide'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Dividing 16 by -2 is not equal -8').toHaveValue('-8');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -1079,12 +1125,10 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Divide'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Dividing -48 by -12 is not equal 4').toHaveValue('4');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
-
+*/
 data.forEach(version => {
   test.describe(version + ': Operation Divide', () => {
     test('Dividing 6.6 by 1.5 is equal 4.4', async ({ page }) => {
@@ -1095,14 +1139,10 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Divide'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Dividing 6.6 by 1.5 is not equal 4.4').toHaveValue('4.4');
-      await page.locator('#integerSelect').click();
-      await expect(page.locator('#numberAnswerField'), 'Answer is not integer').toHaveValue('4');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
-
+/*
 data.forEach(version => {
   test.describe(version + ': Operation Divide', () => {
     test('Dividing -6.6 by -1.5 is equal 4.4', async ({ page }) => {
@@ -1113,10 +1153,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Divide'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Dividing -6.6 by -1.5 is not equal 4.4').toHaveValue('4.4');
-      await page.locator('#integerSelect').click();
-      await expect(page.locator('#numberAnswerField'), 'Answer is not integer').toHaveValue('4');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -1131,10 +1167,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Divide'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Dividing 6.6 by -1.5 is not equal -4.4').toHaveValue('-4.4');
-      await page.locator('#integerSelect').click();
-      await expect(page.locator('#numberAnswerField'), 'Answer is not integer').toHaveValue('-4');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -1149,14 +1181,10 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Divide'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Dividing -6.6 by 1.5 is not equal -4.4').toHaveValue('-4.4');
-      await page.locator('#integerSelect').click();
-      await expect(page.locator('#numberAnswerField'), 'Answer is not integer').toHaveValue('-4');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
-
+*/
 data.forEach(version => {
   test.describe(version + ': Operation Divide', () => {
     test('Dividing -6 by blank shows error message "Divide by zero error!"', async ({ page }) => {
@@ -1170,7 +1198,7 @@ data.forEach(version => {
     });
   });
 });
-
+/*
 data.forEach(version => {
   test.describe(version + ': Operation Divide', () => {
     test('Dividing 6 by blank shows error message "Divide by zero error!"', async ({ page }) => {
@@ -1184,7 +1212,7 @@ data.forEach(version => {
     });
   });
 });
-
+*/
 data.forEach(version => {
   test.describe(version + ': Operation Divide', () => {
     test('Dividing 6 by 0 shows error message "Divide by zero error!"', async ({ page }) => {
@@ -1209,12 +1237,10 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Divide'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Dividing blank by 3 is not equal 0').toHaveValue('0');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
-
+/*
 data.forEach(version => {
   test.describe(version + ': Operation Divide', () => {
     test('Dividing blank by -3 is equal 0', async ({ page }) => {
@@ -1225,12 +1251,10 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Divide'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Dividing blank by -3 is not equal 0').toHaveValue('0');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
-
+*/
 data.forEach(version => {
   test.describe(version + ': Operation Divide', () => {
     test('Dividing 6.1 by 0 shows error message "Divide by zero error!"', async ({ page }) => {
@@ -1269,12 +1293,10 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Concatenate'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Concatenating 10 with 12 is not equal 1012').toHaveValue('1012');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
-
+/*
 data.forEach(version => {
   test.describe(version + ': Operation Concatenate', () => {
     test('Concatenating -10 with -12 is equal -10-12', async ({ page }) => {
@@ -1285,8 +1307,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Concatenate'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Concatenate -10 with -12 is not equal -10-12').toHaveValue('-10-12');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -1301,8 +1321,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Concatenate'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Concatenating 10 with -12 is not equal 10-12').toHaveValue('10-12');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -1317,8 +1335,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Concatenate'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Concatenating -10 with 12 is not equal -1012').toHaveValue('-1012');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -1333,8 +1349,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Concatenate'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Concatenating 6.1 with 3.2 is not equal 6.13.2').toHaveValue('6.13.2');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -1349,8 +1363,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Concatenate'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Concatenating -6.1 with -3.2 is not equal -6.1-3.2').toHaveValue('-6.1-3.2');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -1365,8 +1377,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Concatenate'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Concatenating 6.1 with -3.2 is not equal 6.1-3.2').toHaveValue('6.1-3.2');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -1381,12 +1391,10 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Concatenate'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Concatenating -6.1 with 3.2 is not equal -6.13.2').toHaveValue('-6.13.2');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
-
+*/
 data.forEach(version => {
   test.describe(version + ': Operation Concatenate', () => {
     test('Concatenating -6 with blank is equal -6', async ({ page }) => {
@@ -1397,12 +1405,10 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Concatenate'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Concatenating -6 with blank is not equal -6').toHaveValue('-6');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
-
+/*
 data.forEach(version => {
   test.describe(version + ': Operation Concatenate', () => {
     test('Concatenating blank to 3 is equal 3', async ({ page }) => {
@@ -1413,12 +1419,10 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Concatenate'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Concatenating blank to 3 is not equal 3').toHaveValue('3');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
-
+*/
 data.forEach(version => {
   test.describe(version + ': Operation Concatenate', () => {
     test('Concatenating -6.1 with blank is equal -6.1', async ({ page }) => {
@@ -1429,8 +1433,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Concatenate'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Concatenating -6.1 with blank is not equal -6.1').toHaveValue('-6.1');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -1445,8 +1447,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Concatenate'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Concatenating blank with blank is not equal blank').toHaveValue('');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -1461,12 +1461,10 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Concatenate'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Concatenating 1.2.3.4 with 5 is not equal 1.2.3.45').toHaveValue('1.2.3.45');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
-
+/*
 data.forEach(version => {
   test.describe(version + ': Operation Concatenate', () => {
     test('Concatenating 5 with 1.2.3.4 is equal 51.2.3.4', async ({ page }) => {
@@ -1477,8 +1475,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Concatenate'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Concatenating 5 with 1.2.3.4 is not equal 51.2.3.4').toHaveValue('51.2.3.4');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -1493,8 +1489,6 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Concatenate'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Concatenating AAAA with 5 is not equal AAAA5').toHaveValue('AAAA5');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
@@ -1509,8 +1503,7 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Concatenate'});
       await page.locator('#calculateButton').click();
       await expect(page.locator('#numberAnswerField'), 'Concatenating 5 with AAAA is not equal 5AAAA').toHaveValue('5AAAA');
-      await page.locator('#clearButton').click();
-      await expect(page.locator('#numberAnswerField'), 'Clear button does not clean answer field').toHaveValue('');
     });
   });
 });
+*/
