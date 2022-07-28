@@ -172,7 +172,7 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Add'});
       await page.locator('#calculateButton').click();
       await page.locator('#integerSelect').click();
-      await expect(page.locator('#numberAnswerField'), '"Integers only" checkbox does not convert answer value to an integer number when Add operation is selected').toHaveValue('20');
+      await expect(page.locator('#numberAnswerField'), '"Integers only" checkbox does not convert answer value to an integer number when Add operation is selected').toHaveValue(/^(0|-*[1-9]+[0-9]*)$/);
     });
   });
 });
@@ -187,7 +187,7 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Subtract'});
       await page.locator('#calculateButton').click();
       await page.locator('#integerSelect').click();
-      await expect(page.locator('#numberAnswerField'), '"Integers only" checkbox does not convert answer value to an integer number when Subtract operation is selected').toHaveValue('9');
+      await expect(page.locator('#numberAnswerField'), '"Integers only" checkbox does not convert answer value to an integer number when Subtract operation is selected').toHaveValue(/^(0|-*[1-9]+[0-9]*)$/);
     });
   });
 });
@@ -202,7 +202,7 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Multiply'});
       await page.locator('#calculateButton').click();
       await page.locator('#integerSelect').click();
-      await expect(page.locator('#numberAnswerField'), '"Integers only" checkbox does not convert answer value to an integer number when Multiply operation is selected').toHaveValue('83');
+      await expect(page.locator('#numberAnswerField'), '"Integers only" checkbox does not convert answer value to an integer number when Multiply operation is selected').toHaveValue(/^(0|-*[1-9]+[0-9]*)$/);
     });
   });
 });
@@ -217,7 +217,7 @@ data.forEach(version => {
       await page.selectOption('#selectOperationDropdown', {label: 'Divide'});
       await page.locator('#calculateButton').click();
       await page.locator('#integerSelect').click();
-      await expect(page.locator('#numberAnswerField'), '"Integers only" checkbox does not convert answer value to an integer number when Divide operation is selected').toHaveValue('2');
+      await expect(page.locator('#numberAnswerField'), '"Integers only" checkbox does not convert answer value to an integer number when Divide operation is selected').toHaveValue(/^(0|-*[1-9]+[0-9]*)$/);
     });
   });
 });
